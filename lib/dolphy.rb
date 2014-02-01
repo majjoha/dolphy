@@ -1,9 +1,19 @@
 require "#{File.dirname(__FILE__)}/dolphy/router"
 require "#{File.dirname(__FILE__)}/dolphy/templates"
-require 'haml'
 require 'rack'
 
 class DolphyApplication
+# This returns a DolphyApplication defined by what is passed in the block.
+#
+# An application could for instance be defined in this way
+#
+# app = DolphyApplication.app do
+#   get '/hello' do
+#     haml :index, :body => "Hello"
+#   end
+# end
+#
+# run app
   class << self
     def app(&block)
       Dolphy::Core.new(&block)
@@ -25,13 +35,17 @@ module Dolphy
       @headers = headers
       @response = []
       @routes = { :get => {}, :post => {}, :put => {}, :delete => {} }
-      instance_eval &block #yield
+      instance_eval &block
     end
 
     def add_route(http_method, path, block)
       routes[http_method][path] = block
     end
 
+    # The main logic of the application nests inside the call(env) method.
+    # It looks through all of the routes for the current request method, and
+    # if it finds a route that matches the current path, it evalutes the block
+    # and sets the response to the result of this evaluation.
     def call(env)
       http_method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
