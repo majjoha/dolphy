@@ -1,8 +1,12 @@
+# This module handles all the methods that adds routes to our route array.
+# It has an array containing all the routes ordered by HTTP method.
 module Dolphy
   module Router
-    # This module handles all the methods that adds routes to our route array.
-    # Ideally, it should also be able to return the routes and have the
-    # add_route method in some way, but that is a thing to do later on.
+    attr_accessor :routes
+
+    def initialize_router
+      @routes = { :get => {}, :post => {}, :put => {}, :delete => {} }
+    end
 
     def get(path, &block)
       add_route(:get, path, block)
@@ -18,6 +22,12 @@ module Dolphy
 
     def delete(path, &block)
       add_route(:delete, path, block)
+    end
+
+    private
+
+    def add_route(http_method, path, block)
+      routes[http_method][path] = block
     end
   end
 end
