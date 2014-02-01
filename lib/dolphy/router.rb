@@ -1,5 +1,9 @@
 module Dolphy
   module Router
+    # This module handles all the methods that adds routes to our route array.
+    # Ideally, it should also be able to return the routes and have the
+    # add_route method in some way, but that is a thing to do later on.
+
     def get(path, &block)
       add_route(:get, path, block)
     end
