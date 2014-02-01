@@ -17,7 +17,7 @@ module Dolphy
       engine.render(Object.new, locals)
     end
 
-    def erb(template_name, locals)
+    def erb(template_name, locals=nil)
       template = File.open("views/#{template_name.to_s}.erb").read
       engine = ERB.new(template)
       engine.result(OpenStruct.new(locals).instance_eval { binding })
