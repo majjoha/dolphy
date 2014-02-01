@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    erubis (2.7.0)
+    haml (4.0.5)
+      tilt
+    rack (1.5.2)
+    shotgun (0.9)
+      rack (>= 1.0)
+    tilt (2.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  erubis
+  haml
+  shotgun
