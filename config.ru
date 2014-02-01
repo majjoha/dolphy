@@ -1,4 +1,5 @@
-require "#{File.dirname(__FILE__)}/lib/dolphy"
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+require "lib/dolphy"
 
 app = DolphyApplication.app do
   get '/hello' do
@@ -6,7 +7,11 @@ app = DolphyApplication.app do
   end
 
   get '/wat' do
-    erb :what, :body => "WAT"
+    erb :what, :body => "wat"
+  end
+
+  get '/' do
+    haml :index, :body => "index"
   end
 end
 
