@@ -7,7 +7,7 @@ module Dolphy
     include Dolphy::TemplateEngines
     include Dolphy::Router
 
-    attr_reader :status, :headers, :response, :routes
+    attr_reader :status, :headers, :response, :routes, :request
 
     def initialize(status = 200,
                    headers = {"Content-type" => "text/html"},
@@ -19,6 +19,12 @@ module Dolphy
       instance_eval(&block)
     end
 
+    # Returns the parameters sent in the request, e.g. parameters in POST
+    # requests.
+    def params
+      request.params 
+    end
+
     # The main logic of the application nests inside the call(env) method.
     # It looks through all of the routes for the current request method, and
     # if it finds a route that matches the current path, it evalutes the block
@@ -26,6 +32,7 @@ module Dolphy
     def call(env)
       http_method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
+      @request = Rack::Request.new(env)
 
       unless routes[http_method].nil?
         routes[http_method].each do |url, block|
