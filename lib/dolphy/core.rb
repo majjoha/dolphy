@@ -1,5 +1,5 @@
-require "dolphy/router"
-require "dolphy/template_engines"
+require 'dolphy/router'
+require 'dolphy/template_engines'
 require 'rack'
 
 module Dolphy
