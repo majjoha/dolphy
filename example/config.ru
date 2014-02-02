@@ -13,6 +13,10 @@ app = DolphyApplication.app do
   get '/' do
     haml :index, :body => "index"
   end
+
+  post '/post' do
+    haml :post, :body => "hello #{params["message"]["name"]}"
+  end
 end
 
 run app
