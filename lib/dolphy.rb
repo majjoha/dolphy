@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require "dolphy/core"
+require 'dolphy/core'
 
 class DolphyApplication
 # This returns a DolphyApplication defined by what is passed in the block.
@@ -13,9 +13,7 @@ class DolphyApplication
 # end
 #
 # run app
-  class << self
-    def app(&block)
-      Dolphy::Core.new(&block)
-    end
+  def self.app(&block)
+    Dolphy::Core.new(&block)
   end
 end
