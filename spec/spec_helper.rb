@@ -6,17 +6,29 @@ require './lib/dolphy'
 
 ENV['RACK_ENV'] = 'test'
 
-Capybara.default_driver = :selenium
-
+# This is the app we are going to test.
 app = DolphyApplication.app do
-  get '/hello' do
+  get '/' do
     haml :index, :body => "Hello"
+  end
+
+  post '/post' do
+    haml :post, :body => "Hello #{params["message"]["name"]}"
   end
 end
 
+Capybara.default_driver = :selenium
 Capybara.app = app
 
+module SpecHelper
+  include Rack::Test::Methods
+
+  def app
+    Capybara.app
+  end
+end
+
 RSpec.configure do |config|
-  config.include Rack::Test::Methods
+  config.include SpecHelper
   config.include Capybara::DSL
 end
