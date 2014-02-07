@@ -8,6 +8,11 @@ describe 'DolphyApplication' do
       visit '/'
       expect(page).to have_content "Hello"
     end
+
+    it 'does not have this route' do
+      visit '/fail'
+      expect(page).to have_content "Route not found!"
+    end
   end
 
   describe '#post' do
