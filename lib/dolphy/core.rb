@@ -7,7 +7,7 @@ module Dolphy
     include Dolphy::TemplateEngines
     include Dolphy::Router
 
-    attr_reader :status, :headers, :response, :routes, :request
+    attr_accessor :status, :headers, :response, :routes, :request
 
     def initialize(status = 200,
                    headers = {"Content-type" => "text/html"},
@@ -32,16 +32,15 @@ module Dolphy
     def call(env)
       http_method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
-      @request = Rack::Request.new(env)
+      self.request = Rack::Request.new(env)
 
       unless routes[http_method].nil?
-        routes[http_method].each do |url, block|
-          if url == path
-            body = instance_eval(&block)
-            @response = [body]
-          else
-            [404, {}, "Route not found!"]
-          end
+        if block = routes[http_method][path]
+          body = instance_eval(&block)
+          self.response = [body]
+        else
+          self.status = 404
+          self.response = ["Route not found!"]
         end
         [status, headers, response]
       end
