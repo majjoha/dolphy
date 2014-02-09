@@ -35,6 +35,7 @@ module Dolphy
       self.request = Rack::Request.new(env)
 
       if block = routes[http_method][path]
+        self.status = 200
         self.response = [instance_eval(&block)]
       else
         self.status = 404
