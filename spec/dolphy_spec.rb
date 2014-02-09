@@ -11,7 +11,7 @@ describe 'DolphyApplication' do
 
     it 'does not have this route' do
       visit '/fail'
-      expect(page).to have_content "Route not found!"
+      expect(page).to have_content "Page not found."
     end
   end
 
