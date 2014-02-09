@@ -24,6 +24,10 @@ module Dolphy
       add_route(:delete, path, block)
     end
 
+    def not_found
+      erb :not_found
+    end
+
     private
 
     def add_route(http_method, path, block)

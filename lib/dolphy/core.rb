@@ -38,7 +38,7 @@ module Dolphy
         self.response = [instance_eval(&block)]
       else
         self.status = 404
-        self.response = ["Route not found!"]
+        self.response = [not_found]
       end
       [status, headers, response]
     end
