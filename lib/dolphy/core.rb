@@ -34,16 +34,13 @@ module Dolphy
       path = env['PATH_INFO']
       self.request = Rack::Request.new(env)
 
-      unless routes[http_method].nil?
-        if block = routes[http_method][path]
-          body = instance_eval(&block)
-          self.response = [body]
-        else
-          self.status = 404
-          self.response = ["Route not found!"]
-        end
-        [status, headers, response]
+      if block = routes[http_method][path]
+        self.response = [instance_eval(&block)]
+      else
+        self.status = 404
+        self.response = ["Route not found!"]
       end
+      [status, headers, response]
     end
   end
 end
