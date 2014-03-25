@@ -10,6 +10,10 @@ app = DolphyApplication.app do
     erb :what, :body => "wat"
   end
 
+  get '/greeting' do
+    erb :what, :body => "Hello #{params["name"]}"
+  end
+
   get '/' do
     haml :index, :body => "index"
   end
