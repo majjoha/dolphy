@@ -8,24 +8,14 @@ module Dolphy
       @routes = { :get => {}, :post => {}, :put => {}, :delete => {} }
     end
 
-    def get(path, &block)
-      add_route(:get, path, block)
-    end
-
-    def post(path, &block)
-      add_route(:post, path, block)
-    end
-
-    def put(path, &block)
-      add_route(:put, path, block)
-    end
-
-    def delete(path, &block)
-      add_route(:delete, path, block)
-    end
-
     def not_found
       erb :not_found
+    end
+
+    %w(get post put delete).each do |verb|
+      define_method(verb) do |path, &block|
+        add_route(verb.to_sym, path, block)
+      end
     end
 
     private
