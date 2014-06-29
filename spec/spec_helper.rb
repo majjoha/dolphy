@@ -6,7 +6,6 @@ require './lib/dolphy'
 
 ENV['RACK_ENV'] = 'test'
 
-# This is the app we are going to test.
 app = DolphyApplication.app do
   get '/' do
     haml :index, :body => "Hello"
