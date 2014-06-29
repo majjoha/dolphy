@@ -1,13 +1,17 @@
 require 'dolphy/router'
 require 'dolphy/template_engines'
+require 'dolphy/request'
 require 'rack'
 
 module Dolphy
   class Core
+    extend Forwardable
     include Dolphy::TemplateEngines
-    include Dolphy::Router
 
-    attr_accessor :status, :headers, :response, :routes, :request
+    def_delegator :@router, :get, :get
+    def_delegator :@router, :post, :post
+    def_delegator :@router, :put, :put
+    def_delegator :@router, :delete, :delete
 
     def initialize(status = 200,
                    headers = {"Content-type" => "text/html"},
@@ -15,33 +19,34 @@ module Dolphy
       @status = status
       @headers = headers
       @response = []
-      @routes = initialize_router
+      @router = Dolphy::Router.new
       instance_eval(&block)
     end
 
-    # Returns the parameters sent in the request, e.g. parameters in POST
-    # requests.
     def params
       request.params 
     end
 
-    # The main logic of the application nests inside the call(env) method.
-    # It looks through all of the routes for the current request method, and
-    # if it finds a route that matches the current path, it evalutes the block
-    # and sets the response to the result of this evaluation.
+    # The main logic of Dolphy nests inside the call(env) method. It looks up
+    # the route for the current request method in the routes hash, and if it
+    # finds a route that matches the current path, it evaluates the block and
+    # sets the response accordingly.
     def call(env)
-      http_method = env['REQUEST_METHOD'].downcase.to_sym
-      path = env['PATH_INFO']
-      self.request = Rack::Request.new(env)
+      @request = Dolphy::Request.new(env)
+      http_method, path = @request.http_method, @request.path
 
-      if block = routes[http_method][path]
-        self.status = 200
-        self.response = [instance_eval(&block)]
+      if block = router.routes[http_method][path]
+        @status = 200
+        @response = [instance_eval(&block)]
       else
-        self.status = 404
-        self.response = [not_found]
+        @status = 404
+        @response = ["Page not found."]
       end
       [status, headers, response]
     end
+
+    private
+
+    attr_accessor :status, :headers, :response, :router, :request
   end
 end
