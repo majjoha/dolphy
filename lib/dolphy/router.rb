@@ -6,9 +6,9 @@ module Dolphy
       @routes = { :get => {}, :post => {}, :put => {}, :delete => {} }
     end
 
-    %w(get post put delete).each do |verb|
+    %i(get post put delete).each do |verb|
       define_method(verb) do |path, &block|
-        routes[verb.to_sym][path] = block
+        routes[verb][path] = block
       end
     end
   end
