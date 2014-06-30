@@ -8,10 +8,10 @@ module Dolphy
     extend Forwardable
     include Dolphy::TemplateEngines
 
-    def_delegator :router, :get, :get
-    def_delegator :router, :post, :post
-    def_delegator :router, :put, :put
-    def_delegator :router, :delete, :delete
+    def_delegator :router, :get
+    def_delegator :router, :post
+    def_delegator :router, :put
+    def_delegator :router, :delete
 
     def initialize(status = 200,
                    headers = {"Content-type" => "text/html"},
