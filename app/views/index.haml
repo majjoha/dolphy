@@ -2,7 +2,7 @@
 %html
   %body
     %h1= body
-    %form{:action => "/post", :method => "post"}
-      %label{:for => "message[name]"} Name:
-      %input{:type => "text", :name => "message[name]"}
-      %input{:type => "submit", :value => "Submit"}
+    %form{action: "/post", method: "post"}
+      %label{for: "message[name]"} Name:
+      %input{type: "text", name: "message[name]"}
+      %input{type: "submit", value: "Submit"}

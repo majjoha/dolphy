@@ -8,11 +8,11 @@ ENV['RACK_ENV'] = 'test'
 
 app = DolphyApplication.app do
   get '/' do
-    haml :index, :body => "Hello"
+    haml :index, body: "Hello"
   end
 
   post '/post' do
-    haml :post, :body => "Hello #{params["message"]["name"]}"
+    haml :post, body: "Hello #{params["message"]["name"]}"
   end
 end
 

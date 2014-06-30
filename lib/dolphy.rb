@@ -8,7 +8,7 @@ class DolphyApplication
 #
 # app = DolphyApplication.app do
 #   get '/hello' do
-#     haml :index, :body => "Hello"
+#     haml :index, body: "Hello"
 #   end
 # end
 #

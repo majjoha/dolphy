@@ -6,7 +6,7 @@ require 'erb'
 # They are used like in Sinatra in the following way:
 #
 # get '/hello' do
-#   haml :index, :body => "Hello"
+#   haml :index, body: "Hello"
 # end
 # 
 module Dolphy

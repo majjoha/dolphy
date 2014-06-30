@@ -3,7 +3,7 @@ module Dolphy
     attr_accessor :routes
 
     def initialize
-      @routes = { :get => {}, :post => {}, :put => {}, :delete => {} }
+      @routes = { get: {}, post: {}, put: {}, delete: {} }
     end
 
     %i(get post put delete).each do |verb|
