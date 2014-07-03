@@ -6,7 +6,7 @@ Rack works.
 There are a lot of things I want to do to improve the code and functionality of
 this project. I list these things in the TODO file in the home directory.
 
-## Example
+## Usage
 ```ruby
 app = DolphyApplication.app do
   get '/hello' do
