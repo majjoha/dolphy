@@ -41,12 +41,12 @@ module Dolphy
 
       if block = router.routes[http_method][path]
         @status = 200
-        @response = [instance_eval(&block)]
+        @response = instance_eval(&block)
       else
         @status = 404
-        @response = ["Page not found."]
+        @response = "Page not found."
       end
-      [status, headers, response]
+      [status, headers, [response]]
     end
 
     private
