@@ -23,6 +23,10 @@ module Dolphy
       instance_eval(&block)
     end
 
+    def serve!
+      Rack::Server.start(app: self)
+    end
+
     def params
       request.params 
     end

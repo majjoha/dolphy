@@ -1,19 +1,24 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'dolphy/core'
 
-class DolphyApplication
+class DolphyApp
 # This returns a DolphyApplication defined by what is passed in the block.
 #
 # An application could for instance be defined in this way
 #
-# app = DolphyApplication.app do
-#   get '/hello' do
-#     haml :index, body: "Hello"
+# DolphyApp.app do
+#   DolphyApp.router do
+#     get '/hello' do
+#       haml :index, body: "Hello"
+#     end
 #   end
-# end
+# end.serve!
 #
-# run app
   def self.app(&block)
     Dolphy::Core.new(&block)
+  end
+
+  def self.router(&block)
+    yield
   end
 end
