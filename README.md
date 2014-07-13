@@ -8,21 +8,25 @@ this project. I list these things in the TODO file in the home directory.
 
 ## Usage
 ```ruby
-app = DolphyApplication.app do
-  get '/hello' do
-    haml :index, body: "hello"
+DolphyApp.app do
+  config do |c|
+    # It is possible to specify the template engine in the config block. If no
+    # template engine is specified, it will simply default to ERB.
+    c.configurations[:template_engine] = :erb
   end
 
-  get '/wat' do
-    erb :what, body: "wat"
-  end
+  Dolphy.router do
+    get '/hello' do
+      render :index, body: "hello"
+    end
 
-  get '/' do
-    haml :index, body: "index"
-  end
+    get '/wat' do
+      render :what, body: "wat"
+    end
 
-  post '/post' do
-    haml :post, body: "hello #{params["message"]["name"]}"
+    post '/post' do
+      render :post, body: "hello #{params["message"]["name"]}"
+    end
   end
-end
+end.serve!
 ```
