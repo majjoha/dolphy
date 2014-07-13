@@ -1,10 +1,14 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require './lib/dolphy'
 
-Dolphy.app do
-  Dolphy.router do
+DolphyApp.app do
+  config do |c|
+    c.configurations[:template_engine] = :haml
+  end
+
+  DolphyApp.router do
     get '/hello' do
-      haml :index, body: "hello"
+      render :index, body: "hello"
     end
 
     get '/wat' do
@@ -12,11 +16,11 @@ Dolphy.app do
     end
 
     get '/' do
-      haml :index, body: "index"
+      render :index, body: "index" #haml :index, body: "index"
     end
 
     post '/post' do
-      haml :post, body: "hello #{params["message"]["name"]}"
+      render :post, body: "hello #{params["message"]["name"]}"
     end
   end
 end.serve!
