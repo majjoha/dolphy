@@ -6,7 +6,7 @@ module Dolphy
       @routes = { get: {}, post: {}, put: {}, delete: {} }
     end
 
-    %i(get post put delete).each do |verb|
+    %i(get post put delete head options patch trace).each do |verb|
       define_method(verb) do |path, &block|
         routes[verb][path] = block
       end
