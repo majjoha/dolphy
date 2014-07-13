@@ -4,6 +4,7 @@ require './lib/dolphy'
 DolphyApp.app do
   config do |c|
     c.configurations[:template_engine] = :haml
+    c.configurations[:title] = "booyah!"
   end
 
   DolphyApp.router do
@@ -16,7 +17,7 @@ DolphyApp.app do
     end
 
     get '/' do
-      render :index, body: "index" #haml :index, body: "index"
+      render :index, { title: configurations[:title], body: "index" }
     end
 
     post '/post' do

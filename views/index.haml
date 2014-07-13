@@ -1,7 +1,8 @@
 !!!
 %html
   %body
-    %h1= body
+    %h1= title
+    %h2= body
     %form{action: "/post", method: "post"}
       %label{for: "message[name]"} Name:
       %input{type: "text", name: "message[name]"}
