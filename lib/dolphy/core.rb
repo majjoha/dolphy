@@ -1,6 +1,7 @@
 require 'dolphy/router'
-require 'dolphy/template_engines'
 require 'dolphy/request'
+require 'dolphy/template_engine'
+require 'forwardable'
 require 'rack'
 
 module Dolphy
@@ -13,6 +14,8 @@ module Dolphy
     def_delegator :router, :put
     def_delegator :router, :delete
 
+    attr_accessor :configurations
+
     def initialize(status = 200,
                    headers = {"Content-type" => "text/html"},
                    &block)
@@ -20,11 +23,21 @@ module Dolphy
       @headers = headers
       @response = []
       @router = Dolphy::Router.new
+      @configurations = { template_engine: :erb }
       instance_eval(&block)
     end
 
     def serve!
       Rack::Server.start(app: self)
+    end
+
+    def config(&block)
+      instance_eval(&block)
+    end
+
+    def render(template_name, locals = nil)
+      Dolphy::TemplateEngine.new(configurations[:template_engine]).
+        render(template_name, locals)
     end
 
     def params
