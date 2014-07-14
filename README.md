@@ -8,9 +8,10 @@ It has solely been written for the purpose of learning and is not meant to be
 used in production.
 
 There are a lot of things I want to do to improve the code and functionality of
-this project. I try to list these things in the TODO file in the home directory
-of the project. Feel free to fork this repository and contribute if you want to
-help me implement some of the listed features.
+this project. I try to list these things in the
+[TODO](https://github.com/majjoha/dolphy/blob/master/TODO) file in the home
+directory of the project. Feel free to fork this repository and contribute if
+you want to help me implement some of the listed features.
 
 ## Inspiration
 I've been looking in my directions for inspiration. I probably owe some credit
