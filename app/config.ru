@@ -1,5 +1,5 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require './lib/dolphy'
+$:.unshift('./lib')
+require 'dolphy'
 
 DolphyApp.app do
   config do |c|
