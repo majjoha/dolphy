@@ -18,7 +18,7 @@ app = DolphyApp.app do
   end
 end
 
-Capybara.default_driver = :selenium
+Capybara.javascript_driver = :webkit
 Capybara.app = app
 
 module SpecHelper
