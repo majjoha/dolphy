@@ -9,5 +9,9 @@ module Dolphy
     def [](element)
       configurations[element]
     end
+
+    def []=(key, value)
+      configurations[key] = value
+    end
   end
 end
