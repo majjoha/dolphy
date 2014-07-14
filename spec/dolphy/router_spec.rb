@@ -9,7 +9,16 @@ describe Dolphy::Router do
   
   describe "#initialize" do
     it "initializes an empty router" do
-      expect(router.routes).to eq({ get: {}, post: {}, put: {}, delete: {} })
+      expect(router.routes).to eq({
+        get: {},
+        post: {},
+        put: {},
+        delete: {},
+        head: {},
+        options: {},
+        patch: {},
+        trace: {}
+      })
     end
   end
 

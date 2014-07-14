@@ -5,7 +5,16 @@ module Dolphy
     HTTP_METHODS = %i(get post put delete head options patch trace)
 
     def initialize
-      @routes = { get: {}, post: {}, put: {}, delete: {} }
+      @routes = {
+        get: {},
+        post: {},
+        put: {},
+        delete: {},
+        head: {},
+        options: {},
+        patch: {},
+        trace: {}
+      }
     end
 
     HTTP_METHODS.each do |verb|
