@@ -15,7 +15,7 @@ DolphyApp.app do
     c.configurations[:template_engine] = :erb
   end
 
-  Dolphy.router do
+  DolphyApp.router do
     get '/hello' do
       render :index, body: "hello"
     end
