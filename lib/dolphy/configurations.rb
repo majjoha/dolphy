@@ -3,7 +3,7 @@ module Dolphy
     attr_accessor :configurations
 
     def initialize
-      @configurations = { template_engine: :erb }
+      @configurations = configuration_defaults
     end
 
     def [](element)
@@ -12,6 +12,12 @@ module Dolphy
 
     def []=(key, value)
       configurations[key] = value
+    end
+
+    private
+
+    def configuration_defaults
+      { template_engine: :erb }
     end
   end
 end
