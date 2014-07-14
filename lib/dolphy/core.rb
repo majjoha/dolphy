@@ -1,6 +1,7 @@
 require 'dolphy/router'
 require 'dolphy/request'
 require 'dolphy/template_engine'
+require 'dolphy/configurations'
 require 'forwardable'
 require 'rack'
 
@@ -22,7 +23,7 @@ module Dolphy
       @headers = headers
       @response = []
       @router = Dolphy::Router.new
-      @configurations = { template_engine: :erb }
+      @configurations = Dolphy::Configurations.new
       instance_eval(&block)
     end
 
