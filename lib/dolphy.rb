@@ -3,11 +3,13 @@ require 'dolphy/core'
 require 'dolphy/version'
 
 class DolphyApp
-  def self.app(&block)
-    Dolphy::Core.new(&block)
-  end
+  class << self
+    def app(&block)
+      Dolphy::Core.new(&block)
+    end
 
-  def self.router(&block)
-    yield
+    def router(&block)
+      yield
+    end
   end
 end
