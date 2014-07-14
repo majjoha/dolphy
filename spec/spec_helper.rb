@@ -9,7 +9,7 @@ ENV['RACK_ENV'] = 'test'
 app = DolphyApp.app do
   DolphyApp.router do
     get '/' do
-      haml :index, body: "Hello"
+      haml :index, { title: "booyah!", body: "Hello" }
     end
 
     post '/post' do
