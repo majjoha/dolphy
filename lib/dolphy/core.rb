@@ -9,10 +9,9 @@ module Dolphy
     extend Forwardable
     include Dolphy::TemplateEngines
 
-    def_delegator :router, :get
-    def_delegator :router, :post
-    def_delegator :router, :put
-    def_delegator :router, :delete
+    Dolphy::Router::HTTP_METHODS.each do |verb|
+      def_delegator :router, verb
+    end
 
     attr_accessor :configurations
 
@@ -35,7 +34,7 @@ module Dolphy
       instance_eval(&block)
     end
 
-    def render(template_name, locals = nil)
+    def render(template_name, locals = {})
       Dolphy::TemplateEngine.new(configurations[:template_engine]).
         render(template_name, locals)
     end
