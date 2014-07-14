@@ -13,6 +13,25 @@ describe Dolphy::Core do
     expect(core).to be_a(Dolphy::Core)
   end
 
+  describe "#config" do
+    let(:app) do
+      Dolphy::Core.new do
+        config do |c|
+          c.configurations[:title] = "booyah!"
+        end
+
+        get '/' do
+          'test'
+        end
+      end
+    end
+
+    it "configures the app" do
+      expect(app.configurations.configurations).
+        to eq({ template_engine: :erb, title: "booyah!" })
+    end
+  end
+
   describe "#call" do
     context "when the page exists" do
       let(:env) do
