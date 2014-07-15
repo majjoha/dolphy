@@ -10,7 +10,7 @@ module Dolphy
     extend Forwardable
     include Dolphy::TemplateEngines
 
-    delegate Dolphy::Router::HTTP_METHODS => :router 
+    delegate Dolphy::Router::HTTP_METHODS => :router
 
     attr_accessor :configurations
 
@@ -39,7 +39,7 @@ module Dolphy
     end
 
     def params
-      request.params 
+      request.params
     end
 
     # The main logic of Dolphy nests inside the call(env) method. It looks up
