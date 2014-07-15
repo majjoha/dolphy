@@ -10,9 +10,7 @@ module Dolphy
     extend Forwardable
     include Dolphy::TemplateEngines
 
-    Dolphy::Router::HTTP_METHODS.each do |verb|
-      def_delegator :router, verb
-    end
+    delegate Dolphy::Router::HTTP_METHODS => :router 
 
     attr_accessor :configurations
 
