@@ -21,6 +21,8 @@ to [Camping](http://camping.io), [Cuba](http://cuba.is),
 
 ## Usage
 ```ruby
+require 'dolphy'
+
 DolphyApp.app do
   config do |c|
     # It is possible to specify the template engine in the config block. If no
