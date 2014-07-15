@@ -15,7 +15,7 @@ module Dolphy
     end
 
     private
-    
+
     def default_http_verbs
       {
         get: {},
