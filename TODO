@@ -1,3 +1,2 @@
 - Handle file paths better for template engines.
 - Handle paths with variables like /hello/:name.
-- Fix Haml method to accept no locals.

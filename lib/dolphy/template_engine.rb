@@ -2,12 +2,12 @@ require 'tilt'
 
 module Dolphy
   module TemplateEngines
-    def erb(template_name, locals)
+    def erb(template_name, locals = {})
       template = Tilt::ERBTemplate.new("views/#{template_name.to_s}.erb")
       template.render(Object.new, locals)
     end
 
-    def haml(template_name, locals)
+    def haml(template_name, locals = {})
       template = Tilt::HamlTemplate.new("views/#{template_name.to_s}.haml")
       template.render(Object.new, locals)
     end
