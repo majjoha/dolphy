@@ -1,0 +1,10 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "UTF-8"}
+    %title
+  %body
+    %form{ :action => "/post", :method => "post" }
+      %label{ :for => "message['name']" } Username:
+      %input{ :type => "text", :name => "message['name']" }
+      %input{ :type => "submit", :value => "Login!" }
