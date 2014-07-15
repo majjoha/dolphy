@@ -9,6 +9,7 @@ DolphyApp.app do
     # Configurations are available to the rest of the application defined in the
     # router block, so we could for instance define a title.
     c.configurations[:title] = "Building things with Dolphy"
+    c.configurations[:view_path] = File.expand_path("../views/", __FILE__)
   end
 
   DolphyApp.router do

@@ -34,7 +34,8 @@ module Dolphy
     end
 
     def render(template_name, locals = {})
-      Dolphy::TemplateEngine.new(configurations[:template_engine]).
+      Dolphy::TemplateEngine.new(configurations[:template_engine],
+                                 configurations[:view_path]).
         render(template_name, locals)
     end
 

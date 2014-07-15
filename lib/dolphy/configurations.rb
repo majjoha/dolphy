@@ -17,7 +17,7 @@ module Dolphy
     private
 
     def configuration_defaults
-      { template_engine: :erb }
+      { template_engine: :erb, view_path: "./views/" }
     end
   end
 end

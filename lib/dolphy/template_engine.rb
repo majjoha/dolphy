@@ -2,13 +2,13 @@ require 'tilt'
 
 module Dolphy
   module TemplateEngines
-    def erb(template_name, locals = {})
-      template = Tilt::ERBTemplate.new("views/#{template_name.to_s}.erb")
+    def erb(template_name, locals = {}, view_path = "../views/")
+      template = Tilt::ERBTemplate.new("#{view_path}#{template_name.to_s}.erb")
       template.render(Object.new, locals)
     end
 
-    def haml(template_name, locals = {})
-      template = Tilt::HamlTemplate.new("views/#{template_name.to_s}.haml")
+    def haml(template_name, locals = {}, view_path = "../views/")
+      template = Tilt::HamlTemplate.new("#{view_path}/#{template_name.to_s}.haml")
       template.render(Object.new, locals)
     end
   end
@@ -16,21 +16,22 @@ module Dolphy
   class TemplateEngine
     include Dolphy::TemplateEngines
 
-    def initialize(template_engine)
+    def initialize(template_engine, view_path)
       @template_engine = template_engine
+      @view_path = view_path
     end
 
     def render(template_name, locals)
       case template_engine
       when :erb
-        erb(template_name, locals)
+        erb(template_name, locals, view_path)
       when :haml
-        haml(template_name, locals)
+        haml(template_name, locals, view_path)
       end
     end
 
     private
 
-    attr_accessor :template_engine
+    attr_accessor :template_engine, :view_path
   end
 end
