@@ -1,6 +1,10 @@
+$:.unshift(File.expand_path('../lib/', __FILE__))
+
+require 'dolphy/version'
+
 Gem::Specification.new do |s|
   s.name        = "Dolphy"
-  s.version     = "0.0.1"
+  s.version     = Dolphy::VERSION
   s.date        = "2014-08-14"
   s.summary     = "A simple web framework"
   s.description = "It is actually pretty simple."
