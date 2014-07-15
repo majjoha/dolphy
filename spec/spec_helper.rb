@@ -15,6 +15,10 @@ app = DolphyApp.app do
     post '/post' do
       haml :post, body: "Hello #{params["message"]["name"]}"
     end
+
+    get '/hello' do
+      "hello world!"
+    end
   end
 end
 
