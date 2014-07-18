@@ -7,13 +7,18 @@ require './lib/dolphy'
 ENV['RACK_ENV'] = 'test'
 
 app = DolphyApp.app do
+  config do |c|
+    c.configurations[:template_engine] = :haml
+    c.configurations[:view_path] = "./spec/views/"
+  end
+
   DolphyApp.router do
     get '/' do
-      haml :index, { title: "booyah!", body: "Hello" }
+      render :index, { title: "booyah!", body: "Hello" }
     end
 
     post '/post' do
-      haml :post, body: "Hello #{params["message"]["name"]}"
+      render :post, { body: "Hello #{params["message"]["name"]}" }
     end
 
     get '/hello' do

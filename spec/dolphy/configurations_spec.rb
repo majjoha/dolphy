@@ -9,7 +9,12 @@ describe Dolphy::Configurations do
 
   describe "#initialize" do
     it "initializes an empty configuration hash" do
-      expect(configurations.configurations).to eq({ template_engine: :erb }) 
+      expect(configurations.configurations).to eq(
+        {
+          template_engine: :erb,
+          view_path: "./views/"
+        }
+      )
     end
   end
 

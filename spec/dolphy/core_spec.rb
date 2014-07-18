@@ -28,7 +28,13 @@ describe Dolphy::Core do
 
     it "configures the app" do
       expect(app.configurations.configurations).
-        to eq({ template_engine: :erb, title: "booyah!" })
+        to eq(
+          {
+            template_engine: :erb,
+            view_path: "./views/",
+            title: "booyah!"
+          }
+        )
     end
   end
 
@@ -37,13 +43,13 @@ describe Dolphy::Core do
       let(:env) do
         {
           "REQUEST_METHOD" => "GET",
-          "PATH_INFO" => "/" 
+          "PATH_INFO" => "/"
         }
       end
 
       it "returns an array with a status, headers and the response" do
         expect(core.call(env)).to eq(
-          [200, {"Content-type" => "text/html"}, ['test']] 
+          [200, {"Content-type" => "text/html"}, ['test']]
         )
       end
     end
@@ -52,7 +58,7 @@ describe Dolphy::Core do
       let(:env) do
         {
           "REQUEST_METHOD" => "GET",
-          "PATH_INFO" => "/404" 
+          "PATH_INFO" => "/404"
         }
       end
 
