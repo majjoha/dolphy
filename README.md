@@ -79,4 +79,4 @@ to [Camping](http://camping.io), [Cuba](http://cuba.is),
 
 ## License
 See [LICENSE](https://github.com/majjoha/dolphy/blob/master/LICENSE).
-Copyright (c) 2014 Mathias Jean Johansen <mathias@mjj.io> 
+Copyright (c) 2014 Mathias Jean Johansen <<mathias@mjj.io>>
