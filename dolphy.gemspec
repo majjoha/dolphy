@@ -10,7 +10,8 @@ Gem::Specification.new do |s|
   s.description = "It is actually pretty simple."
   s.author      = ["Mathias Jean Johansen"]
   s.email       = "mathias@mjj.io"
-  s.files       = `git ls-files`.split("\n")
+  s.files       = Dir['TODO', 'README.md', 'LICENSE', 'lib/**/*']
+  s.test_files  = Dir['spec/**/*.rb']
   s.homepage    = "https://github.com/majjoha/dolphy"
   s.license     = "MIT"
 end
