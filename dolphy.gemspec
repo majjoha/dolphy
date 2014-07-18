@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "Dolphy"
   s.version     = Dolphy::VERSION
   s.date        = "2014-08-14"
-  s.summary     = "A simple web framework"
-  s.description = "It is actually pretty simple."
+  s.summary     = "A small and simple web framework."
+  s.description = "A small and simple web framework."
   s.author      = ["Mathias Jean Johansen"]
   s.email       = "mathias@mjj.io"
   s.files       = Dir['TODO', 'README.md', 'LICENSE', 'lib/**/*']
