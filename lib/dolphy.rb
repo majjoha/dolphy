@@ -1,7 +1,7 @@
 require 'dolphy/core'
 require 'dolphy/version'
 
-class DolphyApp
+module Dolphy
   class << self
     def app(&block)
       Dolphy::Core.new(&block)

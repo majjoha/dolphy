@@ -36,7 +36,7 @@ gem install dolphy
 ```ruby
 require 'dolphy'
 
-DolphyApp.app do
+Dolphy.app do
   setup do |app|
     # It is possible to specify the template engine in the config block. If no
     # template engine is specified, it will simply default to ERB.
@@ -47,7 +47,7 @@ DolphyApp.app do
     app.settings[:title] = "Building things with Dolphy"
   end
 
-  DolphyApp.router do
+  Dolphy.router do
     get '/' do
       erb :index, { title: settings[:title], body: "Hello!" }
     end

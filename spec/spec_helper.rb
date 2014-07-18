@@ -6,13 +6,13 @@ require './lib/dolphy'
 
 ENV['RACK_ENV'] = 'test'
 
-app = DolphyApp.app do
+app = Dolphy.app do
   setup do |app|
     app.settings[:template_engine] = :haml
     app.settings[:view_path] = "./spec/views/"
   end
 
-  DolphyApp.router do
+  Dolphy.router do
     get '/' do
       render :index, { title: "booyah!", body: "Hello" }
     end

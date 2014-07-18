@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DolphyApp do
+describe Dolphy do
   include Rack::Test::Methods
 
   describe "#get" do
