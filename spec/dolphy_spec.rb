@@ -32,6 +32,7 @@ describe Dolphy do
   describe "#redirect_to" do
     it "redirects to the given path" do
       visit '/wat'
+      expect(current_path).to eq "/hello"
       expect(page).to have_content "hello world!"
     end
   end
