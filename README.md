@@ -72,10 +72,11 @@ to [Camping](http://camping.io), [Cuba](http://cuba.is),
 
 ## Contribute
 1. [Fork it](https://github.com/majjoha/dolphy/fork).
-2. Create your feature branch(`git checkout -b my-new-feature`).
+2. Create your feature branch (`git checkout -b my-new-feature`).
 3. Commit your changes (`git commit -am 'Add some new feature.'`).
 4. Push to the branch (`git push origin my-new-feature`).
 5. Create a new pull request.
 
 ## License
-MIT license. Copyright (c) 2014 Mathias Jean Johansen <mathias@mjj.io> 
+See [LICENSE](https://github.com/majjoha/dolphy/blob/master/LICENSE).
+Copyright (c) 2014 Mathias Jean Johansen <mathias@mjj.io> 
