@@ -1,7 +1,7 @@
 require 'dolphy/router'
 require 'dolphy/request'
 require 'dolphy/template_engine'
-require 'dolphy/configurations'
+require 'dolphy/settings'
 require 'forwardable'
 require 'rack'
 
@@ -12,7 +12,7 @@ module Dolphy
 
     delegate Dolphy::Router::HTTP_METHODS => :router
 
-    attr_accessor :configurations
+    attr_accessor :settings
 
     def initialize(status = 200,
                    headers = {"Content-type" => "text/html"},
@@ -21,7 +21,7 @@ module Dolphy
       @headers = headers
       @response = []
       @router = Dolphy::Router.new
-      @configurations = Dolphy::Configurations.new
+      @settings = Dolphy::Settings.new
       instance_eval(&block)
     end
 
@@ -29,13 +29,13 @@ module Dolphy
       Rack::Server.start(app: self)
     end
 
-    def config(&block)
+    def setup(&block)
       instance_eval(&block)
     end
 
     def render(template_name, locals = {})
-      Dolphy::TemplateEngine.new(configurations[:template_engine],
-                                 configurations[:view_path]).
+      Dolphy::TemplateEngine.new(settings[:template_engine],
+                                 settings[:view_path]).
         render(template_name, locals)
     end
 

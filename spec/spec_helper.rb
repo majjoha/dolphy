@@ -7,9 +7,9 @@ require './lib/dolphy'
 ENV['RACK_ENV'] = 'test'
 
 app = DolphyApp.app do
-  config do |c|
-    c.configurations[:template_engine] = :haml
-    c.configurations[:view_path] = "./spec/views/"
+  setup do |app|
+    app.settings[:template_engine] = :haml
+    app.settings[:view_path] = "./spec/views/"
   end
 
   DolphyApp.router do

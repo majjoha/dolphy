@@ -1,22 +1,22 @@
 module Dolphy
-  class Configurations
-    attr_accessor :configurations
+  class Settings
+    attr_accessor :settings
 
     def initialize
-      @configurations = configuration_defaults
+      @settings = settings_defaults
     end
 
     def [](element)
-      configurations[element]
+      settings[element]
     end
 
     def []=(key, value)
-      configurations[key] = value
+      settings[key] = value
     end
 
     private
 
-    def configuration_defaults
+    def settings_defaults
       {
         template_engine: :erb,
         view_path: "./views/"

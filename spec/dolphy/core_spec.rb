@@ -16,8 +16,8 @@ describe Dolphy::Core do
   describe "#config" do
     let(:app) do
       Dolphy::Core.new do
-        config do |c|
-          c.configurations[:title] = "booyah!"
+        setup do |app|
+          app.settings[:title] = "booyah!"
         end
 
         get '/' do
@@ -27,7 +27,7 @@ describe Dolphy::Core do
     end
 
     it "configures the app" do
-      expect(app.configurations.configurations).
+      expect(app.settings.settings).
         to eq(
           {
             template_engine: :erb,
