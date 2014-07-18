@@ -70,4 +70,31 @@ describe Dolphy::Core do
       end
     end
   end
+
+  describe "#redirect_to" do
+    let(:app) do
+      Dolphy::Core.new do
+        get '/' do
+          'test'
+        end
+
+        get '/test' do
+          redirect_to '/'
+        end
+      end
+    end
+
+    let(:env) do
+      {
+        "REQUEST_METHOD" => "GET",
+        "PATH_INFO" => "/test"
+      }
+    end
+
+    it "sets the HTTP status to 302" do
+      expect(app.call(env)).to(
+        eq [302, {"Content-type" => "text/html", "Location" => "/"}, [302]]
+      )
+    end
+  end
 end
