@@ -39,6 +39,11 @@ module Dolphy
         render(template_name, locals)
     end
 
+    def redirect_to(path, status = 302)
+      @headers["Location"] = path
+      @status = status
+    end
+
     def params
       request.params
     end

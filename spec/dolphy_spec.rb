@@ -28,4 +28,11 @@ describe Dolphy do
       expect(page).to have_content "Hello Mathias"
     end
   end
+
+  describe "#redirect_to" do
+    it "redirects to the given path" do
+      visit '/wat'
+      expect(page).to have_content "hello world!"
+    end
+  end
 end

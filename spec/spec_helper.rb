@@ -24,6 +24,10 @@ app = Dolphy.app do
     get '/hello' do
       "hello world!"
     end
+
+    get '/wat' do
+      redirect_to '/hello'
+    end
   end
 end
 
