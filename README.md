@@ -42,8 +42,14 @@ Dolphy.app do
     # template engine is specified, it will simply default to ERB.
     app.settings[:template_engine] = :haml
 
+    # You can also specify a view path where Dolphy will look for views. It is
+    # by default set to `./views/`.
+    app.settings[:view_path] = "./somewhere/else/views/"
+
     # Configurations are available to the rest of the application defined in the
-    # router block, so we could for instance define a title.
+    # router block, so we could for instance define a title. Basically, you can
+    # give the settings hash any key value pair that you might find useful to
+    # store for later use.
     app.settings[:title] = "Building things with Dolphy"
   end
 
@@ -58,6 +64,10 @@ Dolphy.app do
 
     post '/post' do
       render :post, body: "hello #{params["message"]["name"]}"
+    end
+
+    get '/hello/:name' do |name|
+      render :hello, name: name
     end
   end
 end.serve!
