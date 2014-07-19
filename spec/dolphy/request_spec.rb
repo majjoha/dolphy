@@ -8,6 +8,12 @@ describe Dolphy::Request do
     })
   end
 
+  describe "#initialize" do
+    it "is an instance of Dolphy::Request" do
+      expect(env).to be_a(Dolphy::Request)
+    end
+  end
+
   describe "#http_method" do
     it "returns the HTTP method as a lowercase symbol" do
       expect(env.http_method).to eq :get
