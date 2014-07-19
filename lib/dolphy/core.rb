@@ -53,8 +53,8 @@ module Dolphy
       @response = Dolphy::Response.new
 
       router.find_route_for(request).each do |matcher, block|
-        if match = router.trim_trailing_slash(request.path_info).match(matcher)
-          break response.body << block.call(*match.captures)
+        if match = router.find_match_data_for(request, with: matcher)
+          response.body << block.call(*match.captures)
         end
       end
 
