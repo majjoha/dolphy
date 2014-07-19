@@ -13,8 +13,10 @@ describe Dolphy::Core do
     end
   end
 
-  it "is an instance of Dolphy::Core" do
-    expect(core).to be_a(Dolphy::Core)
+  describe "#initialize" do
+    it "is an instance of Dolphy::Core" do
+      expect(core).to be_a(Dolphy::Core)
+    end
   end
 
   describe "#setup" do
@@ -39,6 +41,20 @@ describe Dolphy::Core do
             title: "booyah!"
           }
         )
+    end
+  end
+
+  describe "#render" do
+    let(:app) do
+      Dolphy::Core.new do
+        setup do |app|
+          app.settings[:view_path] = "./spec/views/"
+        end
+      end
+    end
+
+    it "renders the template with the locals" do
+      expect(app.render :what, body: "wat").to eq "wat"
     end
   end
 
