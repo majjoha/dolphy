@@ -10,6 +10,10 @@ describe Dolphy::Response do
       expect(response.headers).to eq({"Content-type" => "text/html"})
       expect(response.body).to eq []
     end
+
+    it "is an instance of Dolphy::Response" do
+      expect(response).to be_a(Dolphy::Response)
+    end
   end
 
   describe "#finish" do
