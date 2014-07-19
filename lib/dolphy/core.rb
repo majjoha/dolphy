@@ -52,8 +52,8 @@ module Dolphy
       @request  = Dolphy::Request.new(env)
       @response = Dolphy::Response.new
 
-      if content = router.find_route_for(request)
-        response.body << instance_eval(&content)
+      if block = router.find_route_for(request)
+        response.body << instance_eval(&block)
       else
         response.status = 404
         response.body << "Page not found."
