@@ -61,4 +61,21 @@ describe Dolphy::Router do
       expect(router.routes[:delete]).to have_key '/'
     end
   end
+
+  describe "#find_route_for" do
+    let(:request) do
+      Dolphy::Request.new({
+        "REQUEST_METHOD" => "GET",
+        "PATH_INFO" => "/"
+      })
+    end
+
+    it "returns the block associated with the route" do
+      router.get '/' do
+        'test'
+      end
+
+      expect(router.find_route_for(request).call).to eq "test"
+    end
+  end
 end

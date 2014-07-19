@@ -8,6 +8,10 @@ module Dolphy
       @routes = default_http_verbs
     end
 
+    def find_route_for(request)
+      routes[request.http_method][request.path]
+    end
+
     HTTP_METHODS.each do |verb|
       define_method(verb) do |path, &block|
         routes[verb][path] = block
