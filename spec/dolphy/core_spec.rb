@@ -6,6 +6,10 @@ describe Dolphy::Core do
       get '/' do
         'test'
       end
+
+      get '/empty' do
+        ""
+      end
     end
   end
 
@@ -13,7 +17,7 @@ describe Dolphy::Core do
     expect(core).to be_a(Dolphy::Core)
   end
 
-  describe "#config" do
+  describe "#setup" do
     let(:app) do
       Dolphy::Core.new do
         setup do |app|
@@ -66,6 +70,21 @@ describe Dolphy::Core do
         set to 'Page not found'" do
         expect(core.call(env)).to(
           eq [404, {"Content-type" => "text/html"}, ['Page not found.']]
+        )
+      end
+    end
+
+    context "when the page is an empty string" do
+      let(:env) do
+        {
+          "REQUEST_METHOD" => "GET",
+          "PATH_INFO" => '/empty'
+        }
+      end
+
+      it "returns an empty page with a status set to 200" do
+        expect(core.call(env)).to(
+          eq [200, {"Content-type" => "text/html"}, [""]]
         )
       end
     end
