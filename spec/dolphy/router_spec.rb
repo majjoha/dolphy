@@ -3,13 +3,30 @@ require_relative '../spec_helper'
 describe Dolphy::Router do
   let(:router) { Dolphy::Router.new }
 
-  it "is an instance of Dolphy::Router" do
-    expect(router).to be_a(Dolphy::Router)
-  end
-
   describe "#initialize" do
     it "initializes an empty router" do
       expect(router.routes).to eq({})
+    end
+
+    it "is an instance of Dolphy::Router" do
+      expect(router).to be_a(Dolphy::Router)
+    end
+  end
+
+  describe "#find_route_for" do
+    let(:request) do
+      Dolphy::Request.new({
+        "REQUEST_METHOD" => "GET",
+        "PATH_INFO" => "/"
+      })
+    end
+
+    it "returns the block associated with the route" do
+      router.get '/' do
+        'test'
+      end
+
+      expect(router.find_route_for(request).flatten.last.call).to eq "test"
     end
   end
 
@@ -54,23 +71,6 @@ describe Dolphy::Router do
 
       expect(router.routes[:delete].flatten.first).to eq /\A\z/
       expect(router.routes[:delete].flatten.last.call).to eq "test"
-    end
-  end
-
-  describe "#find_route_for" do
-    let(:request) do
-      Dolphy::Request.new({
-        "REQUEST_METHOD" => "GET",
-        "PATH_INFO" => "/"
-      })
-    end
-
-    it "returns the block associated with the route" do
-      router.get '/' do
-        'test'
-      end
-
-      expect(router.find_route_for(request).flatten.last.call).to eq "test"
     end
   end
 end
