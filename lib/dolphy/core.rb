@@ -16,7 +16,6 @@ module Dolphy
     attr_accessor :settings
 
     def initialize(&block)
-      @response = Dolphy::Response.new
       @router   = Dolphy::Router.new
       @settings = Dolphy::Settings.new
       instance_eval(&block)
@@ -50,14 +49,14 @@ module Dolphy
     # finds a route that matches the current path, it evaluates the block and
     # sets the response accordingly.
     def call(env)
-      @request = Dolphy::Request.new(env)
-      http_method, path = @request.http_method, @request.path
+      @request  = Dolphy::Request.new(env)
+      @response = Dolphy::Response.new
 
-      if block = router.routes[http_method][path]
-        @response.body << instance_eval(&block)
+      if content = router.find_route_for(request)
+        response.body << instance_eval(&content)
       else
-        @response.status = 404
-        @response.body << "Page not found."
+        response.status = 404
+        response.body << "Page not found."
       end
       response.finish
     end
