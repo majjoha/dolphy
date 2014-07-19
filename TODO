@@ -2,5 +2,3 @@
   - The #erb and #haml methods currently don't take the view_path into
   consideration, only #render does. You can specify a view_path as the last
   argument for both methods, but this is not convenient in any way.
-
-- Handle paths with variables like /hello/:name.
