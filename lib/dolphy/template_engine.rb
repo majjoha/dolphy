@@ -20,7 +20,7 @@ module Dolphy
 
     def initialize(template_engine, view_path)
       @template_engine = template_engine
-      @view_path = view_path
+      @view_path       = view_path
     end
 
     def render(template_name, locals)

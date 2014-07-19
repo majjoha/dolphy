@@ -4,9 +4,9 @@ module Dolphy
 
     def initialize(status = 200,
                    headers = {"Content-type" => "text/html"})
-      @status = status
+      @status  = status
       @headers = headers
-      @body = []
+      @body    = []
     end
 
     def finish
