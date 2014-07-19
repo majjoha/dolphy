@@ -3,8 +3,10 @@ require_relative '../spec_helper'
 describe Dolphy::TemplateEngine do
   let(:template_engine) { Dolphy::TemplateEngine.new(:erb, "./spec/views/") }
 
-  it "is an instance of Dolphy::TemplateEngine" do
-    expect(template_engine).to be_a(Dolphy::TemplateEngine)
+  describe "#initialize" do
+    it "is an instance of Dolphy::TemplateEngine" do
+      expect(template_engine).to be_a(Dolphy::TemplateEngine)
+    end
   end
 
   describe "#render" do
