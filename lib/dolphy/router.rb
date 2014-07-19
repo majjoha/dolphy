@@ -5,32 +5,28 @@ module Dolphy
     HTTP_METHODS = %i(get post put delete head options patch trace)
 
     def initialize
-      @routes = default_http_verbs
+      @routes = Hash.new { |h, k| h[k] = [] }
     end
 
     def find_route_for(request)
-      routes[request.http_method][request.path]
+      routes[request.http_method]
     end
 
     HTTP_METHODS.each do |verb|
       define_method(verb) do |path, &block|
-        routes[verb][path] = block
+        routes[verb] << [matcher(path), block]
       end
+    end
+
+    def trim_trailing_slash(string)
+      string.gsub(/\/$/, "")
     end
 
     private
 
-    def default_http_verbs
-      {
-        get: {},
-        post: {},
-        put: {},
-        delete: {},
-        head: {},
-        options: {},
-        patch: {},
-        trace: {}
-      }
+    def matcher(path)
+      re = path.gsub(/\:[^\/]+/, "([^\/]+)")
+      %r{\A#{trim_trailing_slash(re)}\z}
     end
   end
 end

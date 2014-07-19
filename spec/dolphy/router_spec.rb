@@ -6,19 +6,10 @@ describe Dolphy::Router do
   it "is an instance of Dolphy::Router" do
     expect(router).to be_a(Dolphy::Router)
   end
-  
+
   describe "#initialize" do
     it "initializes an empty router" do
-      expect(router.routes).to eq({
-        get: {},
-        post: {},
-        put: {},
-        delete: {},
-        head: {},
-        options: {},
-        patch: {},
-        trace: {}
-      })
+      expect(router.routes).to eq({})
     end
   end
 
@@ -28,7 +19,8 @@ describe Dolphy::Router do
         'test'
       end
 
-      expect(router.routes[:get]).to have_key '/'
+      expect(router.routes[:get].flatten.first).to eq /\A\z/
+      expect(router.routes[:get].flatten.last.call).to eq "test"
     end
   end
 
@@ -38,7 +30,8 @@ describe Dolphy::Router do
         'test'
       end
 
-      expect(router.routes[:post]).to have_key '/'
+      expect(router.routes[:post].flatten.first).to eq /\A\z/
+      expect(router.routes[:post].flatten.last.call).to eq "test"
     end
   end
 
@@ -48,7 +41,8 @@ describe Dolphy::Router do
         'test'
       end
 
-      expect(router.routes[:put]).to have_key '/'
+      expect(router.routes[:put].flatten.first).to eq /\A\z/
+      expect(router.routes[:put].flatten.last.call).to eq "test"
     end
   end
 
@@ -58,7 +52,8 @@ describe Dolphy::Router do
         'test'
       end
 
-      expect(router.routes[:delete]).to have_key '/'
+      expect(router.routes[:delete].flatten.first).to eq /\A\z/
+      expect(router.routes[:delete].flatten.last.call).to eq "test"
     end
   end
 
@@ -75,7 +70,7 @@ describe Dolphy::Router do
         'test'
       end
 
-      expect(router.find_route_for(request).call).to eq "test"
+      expect(router.find_route_for(request).flatten.last.call).to eq "test"
     end
   end
 end

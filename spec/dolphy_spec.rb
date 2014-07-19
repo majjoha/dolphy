@@ -18,6 +18,11 @@ describe Dolphy do
       visit '/hello'
       expect(page).to have_content "hello world!"
     end
+
+    it "returns a page using the input from the matcher" do
+      visit '/hello/davis'
+      expect(page).to have_content "hello davis"
+    end
   end
 
   describe "#post" do

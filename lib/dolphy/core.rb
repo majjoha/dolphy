@@ -52,12 +52,14 @@ module Dolphy
       @request  = Dolphy::Request.new(env)
       @response = Dolphy::Response.new
 
-      if block = router.find_route_for(request)
-        response.body << instance_eval(&block)
-      else
-        response.status = 404
-        response.body << "Page not found."
+      router.find_route_for(request).each do |matcher, block|
+        if match = router.trim_trailing_slash(request.path_info).match(matcher)
+          break response.body << block.call(*match.captures)
+        end
       end
+
+      response.status = 404 if response.body.empty?
+      response.body << "Page not found." if response.body.empty?
       response.finish
     end
 

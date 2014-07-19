@@ -28,6 +28,10 @@ app = Dolphy.app do
     get '/wat' do
       redirect_to '/hello'
     end
+
+    get '/hello/:name' do |name|
+      "hello #{name}"
+    end
   end
 end
 
