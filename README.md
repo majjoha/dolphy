@@ -1,4 +1,7 @@
 # Dolphy
+[![Build Status](https://magnum.travis-ci.com/majjoha/dolphy.svg?token=G5jfvsY2S8tSb5P53rGq)](https://magnum.travis-ci.com/majjoha/dolphy)
+[![Code Climate](https://codeclimate.com/repos/53cb2ea469568031fe01ad3f/badges/a7a6a867bc5744c524d7/gpa.png)](https://codeclimate.com/repos/53cb2ea469568031fe01ad3f/feed)
+
 Dolphy is an incredibly small (~200 LOC) web framework written in Ruby and based
 on Rack. It was originally mimicking the behavior of Sinatra, but as time has
 passed, it has slightly changed direction and is now more of a mix between
