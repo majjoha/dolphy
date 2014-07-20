@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rack', '~> 1.2'
   s.add_runtime_dependency 'haml', '~> 4.0'
   s.add_runtime_dependency 'erubis', '~> 2.7'
+  s.add_development_dependency 'rake', '~> 10.3.1'
   s.add_development_dependency 'rspec', '~> 2.14'
   s.add_development_dependency 'capybara', '~> 2.2'
   s.add_development_dependency 'capybara-webkit', '~> 1.2'
