@@ -16,6 +16,9 @@ this project. I try to list these things in the
 directory of the project. Feel free to fork this repository and contribute if
 you want to help me implement some of the listed features.
 
+## Requirements
+* Ruby 2.1.0 or newer.
+
 ## Getting started
 Add this line to your Gemfile:
 
