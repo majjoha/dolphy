@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Dolphy do
-  include Rack::Test::Methods
-
   describe "#get" do
     it "returns a page saying Hello on a correct path" do
       visit '/'
@@ -26,7 +24,7 @@ describe Dolphy do
   end
 
   describe "#post" do
-    it "returns a page saying Hello Mathias" do
+    xit "returns a page saying Hello Mathias" do
       visit '/'
       fill_in('message[name]', with: 'Mathias')
       click_button('Submit')

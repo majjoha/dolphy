@@ -4,7 +4,10 @@ require 'dolphy/template_engine'
 require 'dolphy/settings'
 require 'dolphy/response'
 require 'forwardable'
-require 'rack'
+require 'socket'
+require 'net/http'
+require 'cgi'
+require 'logger'
 
 module Dolphy
   class Core
@@ -18,11 +21,17 @@ module Dolphy
     def initialize(&block)
       @router   = Dolphy::Router.new
       @settings = Dolphy::Settings.new
+      @response = Dolphy::Response.new
+      @request  = nil
+      @port     = 2345
+      @server   = TCPServer.new('localhost', port)
+      @logger   = Logger.new(STDOUT)
       instance_eval(&block)
     end
 
     def serve!
-      Rack::Server.start(app: self)
+      logger.info("Application was started on port #{port}")
+      run
     end
 
     def setup(&block)
@@ -41,30 +50,40 @@ module Dolphy
     end
 
     def params
-      request.params
+      # Take a look at http://www.ruby-doc.org/stdlib-2.1.2/libdoc/uri/rdoc/URI.html#method-c-encode_www_for
+      # for how to handle parameters.
+      h = Hash.new
+      h.default = "hello"
+      h
     end
 
-    # The main logic of Dolphy nests inside the call(env) method. It looks up
-    # the route for the current request method in the routes hash, and if it
-    # finds a route that matches the current path, it evaluates the block and
-    # sets the response accordingly.
-    def call(env)
-      @request  = Dolphy::Request.new(env)
-      @response = Dolphy::Response.new
+    def run
+      loop do
+        Thread.start(server.accept) do |socket|
+          request = socket.gets
 
-      router.find_route_for(request).each do |matcher, block|
-        if match = router.find_match_data_for(request, with: matcher)
-          response.body << block.call(*match.captures)
+          logger.info("#{Time.now}: #{request}")
+
+          # Find block matching the received request and call it with the
+          # match captures.
+          router.find_route_for(request).each do |matcher, block|
+            if match = router.find_match_data_for(request, with: matcher)
+              response.body << block.call(*match.captures)
+            end
+          end
+
+          # Return the headers and response body.
+          socket.print(response)
+
+          # Reset the response.
+          response.finish
+
+          # Close the socket, terminating the connection.
+          socket.close
         end
       end
-
-      response.status = 404 if response.body.empty?
-      response.body << "Page not found." if response.body.empty?
-      response.finish
     end
 
-    private
-
-    attr_accessor :response, :router, :request
+    attr_accessor :response, :request, :router, :request, :server, :logger, :port
   end
 end

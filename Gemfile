@@ -1,2 +1,8 @@
 source 'https://rubygems.org'
-gemspec
+
+gem 'haml'
+gem 'erubis'
+gem 'tilt'
+gem 'rspec'
+gem 'capybara'
+gem 'capybara-webkit'

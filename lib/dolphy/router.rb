@@ -9,11 +9,11 @@ module Dolphy
     end
 
     def find_route_for(request)
-      routes[request.http_method]
+      routes[http_method(request)]
     end
 
     def find_match_data_for(request, with:)
-      trim_trailing_slash(request.path_info).match(with)
+      trim_trailing_slash(path_info(request)).match(with)
     end
 
     HTTP_METHODS.each do |verb|
@@ -23,6 +23,17 @@ module Dolphy
     end
 
     private
+
+    def path_info(request)
+      request_uri  = request.split(" ")[1]
+      path         = URI.unescape(URI(request_uri).path)
+
+      path
+    end
+
+    def http_method(request)
+      request.split(" ")[0].downcase.to_sym
+    end
 
     def trim_trailing_slash(string)
       string.gsub(/\/$/, "")

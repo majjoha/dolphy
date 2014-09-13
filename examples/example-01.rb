@@ -1,7 +1,4 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'rspec'
-require 'capybara'
-require './lib/dolphy'
+require_relative '../lib/dolphy'
 
 app = Dolphy.app do
   setup do |app|
@@ -11,7 +8,7 @@ app = Dolphy.app do
 
   Dolphy.router do
     get '/' do
-      render :index, { title: "booyah!", body: "Hello" }
+      render :index, { title: "booyah", body: "Hello" }
     end
 
     post '/post' do
@@ -30,18 +27,4 @@ app = Dolphy.app do
       "hello #{name}"
     end
   end
-end
-
-Capybara.current_driver = :selenium
-Capybara.app_host = "http://localhost:2345"
-
-module SpecHelper
-  def app
-    Capybara.app
-  end
-end
-
-RSpec.configure do |config|
-  config.include SpecHelper
-  config.include Capybara::DSL
-end
+end.serve!
