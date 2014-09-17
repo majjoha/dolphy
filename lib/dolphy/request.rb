@@ -1,9 +1,6 @@
 require 'rack'
 
 module Dolphy
-  # This acts as a simple wrapper class for a request. Its main purpose is to
-  # simplify how the framework receives information about the path and HTTP
-  # method of a request.
   class Request < Rack::Request
     attr_accessor :env
 
