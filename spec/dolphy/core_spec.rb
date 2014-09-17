@@ -36,7 +36,7 @@ describe Dolphy::Core do
       expect(app.settings.settings).
         to eq(
           {
-            template_engine: :erb,
+            template_engine: Dolphy::TemplateEngines::ErbEngine,
             view_path: "./views/",
             title: "booyah!"
           }

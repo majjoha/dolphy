@@ -7,7 +7,7 @@ describe Dolphy::Settings do
     it "initializes an empty configuration hash" do
       expect(settings.settings).to eq(
         {
-          template_engine: :erb,
+          template_engine: Dolphy::TemplateEngines::ErbEngine,
           view_path: "./views/"
         }
       )
@@ -20,7 +20,9 @@ describe Dolphy::Settings do
 
   describe "#[]" do
     it "finds the selected element from the settings hash" do
-      expect(settings[:template_engine]).to eq :erb
+      expect(
+        settings[:template_engine]
+      ).to eq Dolphy::TemplateEngines::ErbEngine
     end
   end
 

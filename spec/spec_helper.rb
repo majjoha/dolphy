@@ -8,7 +8,7 @@ ENV['RACK_ENV'] = 'test'
 
 app = Dolphy.app do
   setup do |app|
-    app.settings[:template_engine] = :haml
+    app.settings[:template_engine] = Dolphy::TemplateEngines::HamlEngine
     app.settings[:view_path] = "./spec/views/"
   end
 

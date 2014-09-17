@@ -46,7 +46,7 @@ Dolphy.app do
   setup do |app|
     # It is possible to specify the template engine in the config block. If no
     # template engine is specified, it will simply default to ERB.
-    app.settings[:template_engine] = :haml
+    app.settings[:template_engine] = Dolphy::TemplateEngines::HamlEngine
 
     # You can also specify a view path where Dolphy will look for views. It is
     # by default set to `./views/`.
@@ -61,7 +61,7 @@ Dolphy.app do
 
   Dolphy.router do
     get '/' do
-      erb :index, { title: settings[:title], body: "Hello!" }
+      render :index, { title: settings[:title], body: "Hello!" }
     end
 
     get '/login' do

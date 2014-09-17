@@ -1,7 +1,12 @@
 require_relative '../spec_helper'
 
 describe Dolphy::TemplateEngine do
-  let(:template_engine) { Dolphy::TemplateEngine.new(:erb, "./spec/views/") }
+  let(:template_engine) do
+    Dolphy::TemplateEngine.new(
+      Dolphy::TemplateEngines::ErbEngine,
+      "./spec/views/"
+    )
+  end
 
   describe "#initialize" do
     it "is an instance of Dolphy::TemplateEngine" do
