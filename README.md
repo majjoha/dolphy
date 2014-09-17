@@ -13,7 +13,7 @@ used in production.
 There are a lot of things I want to do to improve the code and functionality of
 this project. I try to list these things in the
 [issues](https://github.com/majjoha/dolphy/issues). Feel free to fork this
-repository and contribute if you want to help me implement features or fixing
+repository and contribute if you want to help me implement features or fix
 bugs.
 
 ## Requirements
