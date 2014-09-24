@@ -30,9 +30,7 @@ module Dolphy
     end
 
     def render(template_name, locals = {})
-      Dolphy::TemplateEngine.new(settings[:template_engine],
-                                 settings[:view_path]).
-        render(template_name, locals)
+      template_engine.render(template_name, locals)
     end
 
     def redirect_to(path, status = 302)
@@ -64,6 +62,13 @@ module Dolphy
     end
 
     private
+
+    def template_engine
+      @template_engine ||= Dolphy::TemplateEngine.new(
+        settings[:template_engine],
+        settings[:view_path]
+      )
+    end
 
     attr_accessor :response, :router, :request
   end
