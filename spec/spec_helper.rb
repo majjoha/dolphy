@@ -32,6 +32,10 @@ app = Dolphy.app do
     get '/hello/:name' do |name|
       "hello #{name}"
     end
+
+    get '/hello/login' do
+      get "this is a login"
+    end
   end
 end
 
