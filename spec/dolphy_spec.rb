@@ -19,6 +19,12 @@ describe Dolphy do
       expect(page).to have_content "hello world!"
     end
 
+    it "returns the content of the last defined route" do
+      visit '/hello/login'
+      expect(page).to have_content "this is a login"
+      expect(page).to_not have_content "hello login"
+    end
+
     it "returns a page using the input from the matcher" do
       visit '/hello/davis'
       expect(page).to have_content "hello davis"

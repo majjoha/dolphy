@@ -52,7 +52,7 @@ module Dolphy
 
       router.find_route_for(request).each do |matcher, block|
         if match = router.find_match_data_for(request, with: matcher)
-          response.body << block.call(*match.captures)
+          response.body = [block.call(*match.captures)]
         end
       end
 
