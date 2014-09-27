@@ -65,7 +65,7 @@ Open the browser at [http://localhost:8080](http://localhost:8080).
 * [Template engines](#template-engines)
 * [Routes](#routes)
 
-## Setup blocks
+### Setup blocks
 A Dolphy application has a couple of default configurations that you can change
 based on your needs through the `setup` block.
 
@@ -108,7 +108,7 @@ Dolphy.app do
 end.serve!
 ```
 
-## Template engines
+### Template engines
 Dolphy supports Haml and ERB by default through the
 `Dolphy::TemplateEngines::HamlEngine` and `Dolphy::TemplateEngine::ErbEngine`
 (which relies on Tilt under the hood), but we can effortlessly build our own
@@ -145,7 +145,7 @@ Dolphy.app do
 end.serve!
 ```
 
-## Routes
+### Routes
 The routing layer should look familiar if you've already worked with other Ruby
 frameworks. We can override routes with variables by adding a new route, and we
 use `:name` to access variables in the routes:
