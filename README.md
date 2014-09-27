@@ -75,6 +75,12 @@ Dolphy.app do
     get '/hello/:name' do |name|
       render :hello, name: name
     end
+
+    # Note here that /hello/you should be defined after /hello/:name
+    # in order to be matched properly.
+    get '/hello/you'
+      render :hello_you
+    end
   end
 end.serve!
 ```
