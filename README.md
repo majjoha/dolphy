@@ -1,4 +1,5 @@
 # Dolphy
+[![Gem Version](https://badge.fury.io/rb/dolphy.svg)](http://badge.fury.io/rb/dolphy)
 [![Build Status](https://travis-ci.org/majjoha/dolphy.svg)](https://travis-ci.org/majjoha/dolphy)
 [![Code Climate](https://codeclimate.com/repos/53cb2ea469568031fe01ad3f/badges/a7a6a867bc5744c524d7/gpa.png)](https://codeclimate.com/repos/53cb2ea469568031fe01ad3f/feed)
 

@@ -23,4 +23,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 2.14'
   s.add_development_dependency 'capybara', '~> 2.2'
   s.add_development_dependency 'capybara-webkit', '~> 1.2'
+  s.add_development_dependency 'coveralls', '~ 0.7'
 end

@@ -3,6 +3,9 @@ require 'rspec'
 require 'rack/test'
 require 'capybara'
 require './lib/dolphy'
+require 'coveralls'
+
+Coveralls.wear!
 
 ENV['RACK_ENV'] = 'test'
 
