@@ -7,7 +7,7 @@ module Dolphy
       Dolphy::Core.new(&block)
     end
 
-    def router(&block)
+    def router
       yield
     end
   end
