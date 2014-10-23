@@ -3,7 +3,7 @@ module Dolphy
     attr_accessor :settings
 
     def initialize
-      @settings = settings_defaults
+      @settings = default_settings
     end
 
     def [](element)
@@ -16,7 +16,7 @@ module Dolphy
 
     private
 
-    def settings_defaults
+    def default_settings
       {
         template_engine: Dolphy::TemplateEngines::ErbEngine,
         view_path: "./views/"
